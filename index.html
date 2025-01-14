@@ -1,1 +1,102 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>hundred</title>  
+    <style>  
+        body {  
+            background-color: black;  
+            color: white;  
+            font-family: Arial, sans-serif;  
+            text-align: center;  
+            padding: 0; /* Remove padding to fit the border neatly */  
+            margin: 0; /* Remove any default margin */  
+            position: relative; /* Needed for absolute positioning */  
+            height: 100vh; /* Make the body fill the viewport height */  
+        }  
 
+        /* Absolute border */  
+        .absolute-border {  
+            position: absolute;  
+            top: 0;  
+            left: 0;  
+            width: 100%;  
+            height: 100%;  
+            border: 10px solid #00f; /* Fluorescent blue border */  
+            pointer-events: none; /* Allow clicks through to content */  
+            z-index: -1; /* Put behind content */  
+        }  
+
+        h1 {  
+            font-size: 4em;  
+            color: #001f4d;  
+            text-shadow: 0 0 10px #001f4d, 0 0 20px #001f4d, 0 0 30px #001f4d;  
+            margin: 20px 0; /* Reduced margin for mobile devices */  
+        }  
+
+        img.title-image {  
+            width: 100%; /* Make it fully responsive */  
+            max-width: 1200px; /* Limit its size for larger screens */  
+            height: auto; /* Maintain aspect ratio */  
+            margin-bottom: 20px;  
+        }  
+
+        .gif-container {  
+            display: flex;  
+            flex-wrap: wrap;  
+            justify-content: center;  
+            gap: 20px; /* Space between GIFs */  
+        }  
+
+        .gif-container a img {  
+            width: 150px;  /* Adjusted size to maintain responsiveness on mobile */  
+            height: 150px; /* Height to match width, maintaining square aspect ratio */  
+            border: 2px solid #001f4d;  
+            border-radius: 10px;  
+            transition: transform 0.3s, box-shadow 0.3s;  
+        }  
+
+        .gif-container a img:hover {  
+            transform: scale(1.1);  
+            box-shadow: 0 0 10px #001f4d;  
+        }  
+
+        @media (min-width: 600px) {  
+            .gif-container a img {  
+                width: 300px; /* Increased size for larger screens */  
+                height: 300px; /* Adjusted height to match width */  
+            }  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="absolute-border"></div> <!-- Unmovable border -->  
+
+    <img src="hundred.jpeg" alt="Title Image" class="title-image">  
+
+    <div class="gif-container">  
+        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">  
+            <img src="pic11.gif" alt="GIF 1">  
+        </a>  
+        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">  
+            <img src="pic22.gif" alt="GIF 2">  
+        </a>  
+        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">  
+            <img src="pic3.gif" alt="GIF 3">  
+        </a>  
+        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">  
+            <img src="pic4.gif" alt="GIF 4">  
+        </a>  
+        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">  
+            <img src="pic5.gif" alt="GIF 5">  
+        </a>  
+        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">  
+            <img src="pic6.gif" alt="GIF 6">  
+        </a>  
+        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">  
+            <img src="pic7.gif" alt="GIF 7">  
+        </a>  
+    </div>  
+</body>  
+</html>
