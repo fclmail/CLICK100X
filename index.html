@@ -4,75 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hundred</title>
+    <title>Hundred</title>
     <style>
         body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
             background-color: black;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 20px;
+            border: 10px solid #00f; /* Solid fluorescent blue border */
+            box-shadow: 0 0 20px #00f;
+            overflow: hidden; /* Prevent scrolling */
         }
 
         h1 {
-            font-size: 4em;
+            font-size: 6em; /* Extra large title */
             color: #001f4d;
             text-shadow: 0 0 10px #001f4d, 0 0 20px #001f4d, 0 0 30px #001f4d;
-            margin-bottom: 50px;
-        }
-
-        .gif-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .gif-container a img {
-            width: 150px;
-            height: 150px;
-            border: 2px solid #001f4d;
-            border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .gif-container a img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 10px #001f4d;
+            margin-bottom: 20px;
         }
 
         .title-image {
             width: 100%;
-            max-width: 400px;
-            margin-bottom: 50px;
+            max-width: 600px; /* Larger image */
+            margin-bottom: 20px;
+        }
+
+        .game-container {
+            position: relative;
+            width: 90%;
+            height: 70vh;
+            border: 5px solid #001f4d;
+            box-shadow: 0 0 20px #001f4d;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1em;
+        }
+
+        .gifs {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .gif-item {
+            width: 150px;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <img src="hundred.jpg" alt="Title Image" class="title-image">
+    <img src="hundred.jpeg" alt="Title Image" class="title-image">
 
-    <div class="gif-container">
-        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">
-            <img src="pic11.gif" alt="GIF 1">
-        </a>
-        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">
-            <img src="pic22.gif" alt="GIF 2">
-        </a>
-        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">
-            <img src="pic3.gif" alt="GIF 3">
-        </a>
-        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">
-            <img src="pic4.gif" alt="GIF 4">
-        </a>
-        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">
-            <img src="pic5.gif" alt="GIF 5">
-        </a>
-        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">
-            <img src="pic6.gif" alt="GIF 6">
-        </a>
-        <a href="https://app.uniswap.org/explore/tokens/polygon/0xc0f6f422ae3812be2ef8c6f89102f5d68bb8cd" target="_blank">
-            <img src="pic7.gif" alt="GIF 7">
-        </a>
+    <h1>Hundred</h1>
+
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div class="controls">
+            <p>Use the on-screen buttons to move and interact.</p>
+        </div>
     </div>
+
+    <div class="gifs">
+        <img src="gif1.gif" alt="Example Gif 1" class="gif-item">
+        <img src="gif2.gif" alt="Example Gif 2" class="gif-item">
+        <img src="gif3.gif" alt="Example Gif 3" class="gif-item">
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        let player = { x: canvas.width / 2, y: canvas.height / 2, size: 20, color: '#00f' };
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            ctx.beginPath();
+            ctx.arc(player.x, player.y, player.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function update() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawPlayer();
+        }
+
+        function handleKeyDown(event) {
+            const speed = 5;
+            switch (event.key) {
+                case 'ArrowUp':
+                    player.y -= speed;
+                    break;
+                case 'ArrowDown':
+                    player.y += speed;
+                    break;
+                case 'ArrowLeft':
+                    player.x -= speed;
+                    break;
+                case 'ArrowRight':
+                    player.x += speed;
+                    break;
+            }
+            update();
+        }
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        update();
+    </script>
 </body>
 </html>
